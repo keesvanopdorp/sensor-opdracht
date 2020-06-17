@@ -1,0 +1,14 @@
+{
+    "name": "keesvanopdorp/sensor-opdracht",
+    "type": "project",
+    "authors": [
+        {
+            "name": "kees",
+            "email": "keesjrvanopdorp@live.nl"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^4.5",
+        "nnnick/chartjs": "^2.9"
+    }
+}
