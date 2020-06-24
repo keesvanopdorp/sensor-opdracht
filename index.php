@@ -1,3 +1,9 @@
+<?php
+    require_once "php/classes/db.php";
+    $db = new Db();
+    $con = $db->getConnection();
+
+?>
 <!doctype html>
 <html lang="nl">
 <head>
@@ -5,7 +11,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 <body>

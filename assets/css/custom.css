@@ -1,3 +1,11 @@
+body{
+    overflow: hidden;
+}
+
+#chart{
+    max-height: 80vh;
+    max-width: 80vw;
+}
 
 
 /*# sourceMappingURL=custom.css.map */

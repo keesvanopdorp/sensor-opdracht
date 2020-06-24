@@ -1,3 +1,11 @@
-
-
+RewriteEngine on
+RewriteRule "assets/css/bootstrap.min.css" "vendor/twbs/bootstrap/dist/css/bootstrap.min.css"
+RewriteRule "assets/css/chart.min.css" "vendor/nnnick/chartjs/dist/Chart.min.css"
+RewriteRule "assets/js/chart.min.js" "vendor/nnnick/chartjs/dist/Chart.min.js"
+Options All -Indexes
+RedirectMatch 404 ^/vendor/$
+RedirectMatch 403 ^/php/$
+RedirectMatch 404 composer.json
+RedirectMatch 404 composer.lock
+RedirectMatch 403 ^/.htaccess$
 

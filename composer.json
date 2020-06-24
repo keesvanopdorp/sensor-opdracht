@@ -9,6 +9,8 @@
     ],
     "require": {
         "twbs/bootstrap": "^4.5",
-        "nnnick/chartjs": "^2.9"
+        "nnnick/chartjs": "^2.9",
+      "ext-mysqli": "*",
+      "ext-json": "*"
     }
 }
