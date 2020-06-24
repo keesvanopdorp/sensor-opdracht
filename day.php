@@ -4,8 +4,7 @@
     $con = $db->getConnection();
     $temps = [];
     $humidity = [];
-    $date = Date('Y-m-d');
-    var_dump($date);
+    $date = date('Y-m-d');
     $sql = "SELECT * FROM `temperatures` WHERE `time` LIKE ? AND `date` = ? ORDER BY `temperature` DESC LIMIT 1";
     for($i=1; $i < 25; $i++){
         if($i < 10){

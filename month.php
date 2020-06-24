@@ -5,13 +5,11 @@ $con = $db->getConnection();
 $temps = [];
 $humidity = [];
 $year = date('Y');
-$sql = "select * from `temperatures` where `date` like ? order by `temperature` desc limit 1";
-for($i=1; $i < 13; $i += 1){
-    if($i < 10){
-        $arg = $year . "-0" . $i . "-%";
-    } else {
-        $arg = $year . "-0" . $i . "-%";
-    }
+$month = date('m');
+$daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+$sql = "select * from `temperatures` where `date` = ? order by `temperature` desc limit 1";
+for($i=1; $i < $daysInMonth + 1; $i += 1){
+    $arg = sprintf('%s-%s-%s', $year, $month, $i);
     $stmt = $con->prepare($sql);
     $stmt->bind_param('s', $arg);
     $stmt->execute();
@@ -36,6 +34,7 @@ for($i=1; $i < 13; $i += 1){
     <script>
         const temps = <?= json_encode($temps) ?>;
         const humidity = <?= json_encode($humidity) ?>;
+        const daysInMonth = <?= json_encode($daysInMonth) ?>;
     </script>
     <title>Document</title>
 </head>
@@ -44,6 +43,10 @@ for($i=1; $i < 13; $i += 1){
 <script src="assets/js/chart.min.js"></script>
 <script>
     const ctx = document.querySelector('#chart').getContext('2d');
+    const labels = [];
+    for(let i=0; i < daysInMonth + 1; i +=1){
+        labels.push(i);
+    }
     /**
      *
      * @const {Chart} chart
@@ -54,20 +57,7 @@ for($i=1; $i < 13; $i += 1){
 
         // The data for our dataset
         data: {
-            labels: [
-                'januari',
-                'febauri',
-                'maart',
-                'april',
-                'mei',
-                'juni',
-                'juli',
-                'augustus',
-                'september',
-                'oktober',
-                'november',
-                'december'
-            ],
+            labels: labels,
             datasets: [{
                 label: "temperatuur",
                 borderColor: 'rgb(0,152,38)',
@@ -89,6 +79,7 @@ for($i=1; $i < 13; $i += 1){
             }
         }
     });
+
 </script>
 </body>
 </html>
