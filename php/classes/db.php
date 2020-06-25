@@ -1,4 +1,7 @@
 <?php
+require_once "vendor/autoload.php";
+$dotenv = Dotenv\Dotenv::createImmutable(__dir__);
+$dotenv->load();
 
 /**
  * Class Db
@@ -9,7 +12,7 @@ class Db {
     private $con;
     public function __construct()
     {
-        $this->con = new mysqli('localhost', 'root', '', 'sensor-opdracht');
+        $this->con = new mysqli($_ENV['MYSQL_HOST'], $_ENV['MYSQL_USERNAME'], $_ENV['MYSQL_PASSWORD'], $_ENV['MYSQL_DATABASE']);
     }
 
     /**

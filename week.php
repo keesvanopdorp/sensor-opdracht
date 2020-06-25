@@ -36,6 +36,16 @@
     <script>
         const temps = <?= json_encode($temps) ?>;
         const humidity = <?= json_encode($humidity) ?>;
+        const labels = [
+                "22 juni 2020",
+                '23 juni 2020',
+                '24 juni 2020',
+                '25 juni 2020',
+                '26 juni 2020',
+                '27 juni 2020',
+                '28 juni 2020',
+                '29 juni 2020'
+        ];
     </script>
     <title>Document</title>
 </head>
@@ -54,16 +64,7 @@
 
         // The data for our dataset
         data: {
-            labels: [
-                "22 juni 2020",
-                '23 juni 2020',
-                '24 juni 2020',
-                '25 juni 2020',
-                '26 juni 2020',
-                '27 juni 2020',
-                '28 juni 2020',
-                '29 juni 2020'
-            ],
+            labels: labels,
             datasets: [{
                 label: "temperatuur",
                 borderColor: 'rgb(0,152,38)',

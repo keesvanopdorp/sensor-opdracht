@@ -8,7 +8,7 @@ $year = date('Y');
 $month = date('m');
 $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 $sql = "select * from `temperatures` where `date` = ? order by `temperature` desc limit 1";
-for($i=1; $i < $daysInMonth + 1; $i += 1){
+for($i=1; $i < $daysInMonth + 2; $i += 1){
     $arg = sprintf('%s-%s-%s', $year, $month, $i);
     $stmt = $con->prepare($sql);
     $stmt->bind_param('s', $arg);

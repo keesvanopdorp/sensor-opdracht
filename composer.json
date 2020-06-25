@@ -12,6 +12,7 @@
         "nnnick/chartjs": "^2.9",
       "ext-mysqli": "*",
       "ext-json": "*",
-        "ext-calendar": "*"
+        "ext-calendar": "*",
+        "vlucas/phpdotenv": "^5.0"
     }
 }
