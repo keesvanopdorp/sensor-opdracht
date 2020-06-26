@@ -1,11 +1,9 @@
-body{
-    overflow: hidden;
-}
+body {
+  overflow: hidden; }
 
-#chart{
-    max-height: 80vh;
-    max-width: 80vw;
+#chart {
+  height: 80vh !important;
+  width: 80vw !important;
 }
-
 
 /*# sourceMappingURL=custom.css.map */

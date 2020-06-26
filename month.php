@@ -31,55 +31,27 @@ for($i=1; $i < $daysInMonth + 2; $i += 1){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/chart.min.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
     <script>
         const temps = <?= json_encode($temps) ?>;
         const humidity = <?= json_encode($humidity) ?>;
         const daysInMonth = <?= json_encode($daysInMonth) ?>;
+        const labels = [];
+        for(let i=0; i < daysInMonth + 1; i +=1){
+            labels.push(i);
+        }
     </script>
-    <title>Document</title>
+    <title>Maand</title>
 </head>
 <body>
-<canvas id="chart"></canvas>
-<script src="assets/js/chart.min.js"></script>
-<script>
-    const ctx = document.querySelector('#chart').getContext('2d');
-    const labels = [];
-    for(let i=0; i < daysInMonth + 1; i +=1){
-        labels.push(i);
-    }
-    /**
-     *
-     * @const {Chart} chart
-     */
-    const chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "temperatuur",
-                borderColor: 'rgb(0,152,38)',
-                data: temps,
-            },
-                {
-                    label: "luchtvochtigheid",
-                    borderColor: 'rgb(20, 1, 100)',
-                    data: humidity
-                }]
-        },
-
-        // Configuration options go here
-        options: {
-            elements: {
-                line: {
-                    fill: false
-                }
-            }
-        }
-    });
-
-</script>
+<?php
+require_once "layout/partials/navbar.php";
+?>
+<h1 class="text-center">Temperatuur en luchtvochtigheid deze maand</h1>
+<?php
+require_once "layout/partials/chart.php"
+?>
 </body>
 </html>

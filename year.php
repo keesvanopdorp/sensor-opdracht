@@ -33,62 +33,36 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/chart.min.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
     <script>
         const temps = <?= json_encode($temps) ?>;
         const humidity = <?= json_encode($humidity) ?>;
+        const labels = [
+            'januari',
+            'febauri',
+            'maart',
+            'april',
+            'mei',
+            'juni',
+            'juli',
+            'augustus',
+            'september',
+            'oktober',
+            'november',
+            'december'
+        ];
     </script>
-    <title>Document</title>
+    <title>jaar</title>
 </head>
 <body>
-<canvas id="chart"></canvas>
-<script src="assets/js/chart.min.js"></script>
-<script>
-    const ctx = document.querySelector('#chart').getContext('2d');
-    /**
-     *
-     * @const {Chart} chart
-     */
-    const chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-            labels: [
-                'januari',
-                'febauri',
-                'maart',
-                'april',
-                'mei',
-                'juni',
-                'juli',
-                'augustus',
-                'september',
-                'oktober',
-                'november',
-                'december'
-            ],
-            datasets: [{
-                label: "temperatuur",
-                borderColor: 'rgb(0,152,38)',
-                data: temps,
-            },
-                {
-                    label: "luchtvochtigheid",
-                    borderColor: 'rgb(20, 1, 100)',
-                    data: humidity
-                }]
-        },
-
-        // Configuration options go here
-        options: {
-            elements: {
-                line: {
-                    fill: false
-                }
-            }
-        }
-    });
-</script>
+<?php
+require_once "layout/partials/navbar.php";
+?>
+<h1 class="text-center">Temperatuur en luchtvochtigheid dit jaar</h1>
+<?php
+require_once "layout/partials/chart.php"
+?>
 </body>
 </html>

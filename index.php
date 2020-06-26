@@ -1,64 +1,64 @@
 <?php
-    require_once "php/classes/db.php";
-    $db = new Db();
-    $con = $db->getConnection();
+require_once "php/classes/db.php";
+$db = new Db();
+$con = $db->getConnection();
+$temps = [];
+$humidity = [];
+$date = date('Y-m-d');
+$sql = "SELECT * FROM `temperatures` WHERE `time` LIKE ? AND `date` = ? ORDER BY `temperature` DESC LIMIT 1";
+for($i=1; $i < 25; $i++){
+    if($i < 10){
+        $arg = "0" . $i . ":%";
 
+    } else {
+        $arg = $i . ":%";
+    }
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param('ss', $arg, $date);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc();
+    if(!$data['temperature']){
+        array_push($temps, "");
+        array_push($humidity, "");
+    } else {
+        array_push($temps, $data['temperature']);
+        array_push($humidity, $data['humidity']);
+    }
+}
 ?>
+
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/chart.min.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <title>Vnadaag</title>
+    <script>
+        const temps = <?= json_encode($temps) ?>;
+        const humidity = <?= json_encode($humidity) ?>;
+        const labels = [
+            "01:00", '02:00', '03:00', '04:00',
+            '05:00', '06:00', '07:00', '08:00',
+            '09:00', '10:00', '11:00', '12"00', '13:00', '14:00',
+            '15:00', '16:00', '17:00', '18:00',
+            '19:00', '20:00', '21:00', '22:00',
+            '23:00', '00:00'
+        ];
+    </script>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-        <h2 class="navbar-brand">Klassen Monitor</h2>
-    </nav>
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-10 col-md-4 offset-md-0 offset-1">
-                <div class="shadow p-5 mb-5 bg-white rounded">
-                    <h2 class="text-center mt-3">21:43</h2>
-                    <h3 class="text-center my-1 text-muted">Do 9 juni 2020</h3>
-                </div>
-            </div>
-            <div class="col-10 col-md-4 offset-md-0 offset-1">
-                <div class="shadow p-5 mb-5 bg-white rounded">
-                    <h2 class="text-center mt-3">21:43</h2>
-                    <h3 class="text-center my-1 text-muted">Do 9 juni 2020</h3>
-                </div>
-            </div>
-            <div class="col-10 col-md-4 offset-md-0 offset-1">
-                <div class="shadow p-5 mb-5 bg-white rounded">
-                    <h2 class="text-center mt-3">21:43</h2>
-                    <h3 class="text-center my-1 text-muted">Do 9 juni 2020</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row h25">
-            <div class="col-10 col-md-4 offset-md-0 offset-1">
-                <div class="shadow p-5 mb-5 bg-white rounded">
-                    <h2 class="text-center mt-3">21:43</h2>
-                    <h3 class="text-center my-1 text-muted">Do 9 juni 2020</h3>
-                </div>
-            </div>
-            <div class="col-10 col-md-4 offset-md-0 offset-1">
-                <div class="shadow p-5 mb-5 bg-white rounded">
-                    <h2 class="text-center mt-3">21:43</h2>
-                    <h3 class="text-center my-1 text-muted">Do 9 juni 2020</h3>
-                </div>
-            </div>
-            <div class="col-10 col-md-4 offset-md-0 offset-1 h-25">
-                <div class="shadow p-5 mb-5 bg-white rounded">
-                    <h2 class="text-center mt-3">21:43</h2>
-                    <h3 class="text-center my-1 text-muted">Do 9 juni 2020</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+<?php
+require_once "layout/partials/navbar.php";
+?>
+<h1 class="text-center">Temperatuur en luchtvochtigheid vandaag</h1>
+<?php
+require_once "layout/partials/chart.php"
+?>
 </body>
 </html>
