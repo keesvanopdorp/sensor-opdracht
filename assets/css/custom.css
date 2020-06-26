@@ -1,9 +1,8 @@
 body {
-  overflow: hidden; }
+  overflow-x: hidden; }
 
-#chart {
-  height: 80vh !important;
-  width: 80vw !important;
-}
+@media only screen and (min-width: 576px) {
+  #chart {
+    max-height: 80vh; } }
 
 /*# sourceMappingURL=custom.css.map */

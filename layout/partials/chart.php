@@ -34,3 +34,4 @@
         }
     });
 </script>
+<h5 class="d-block d-md-none text-center">klik op het menu op te wisselen van pagina</h5>

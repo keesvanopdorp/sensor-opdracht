@@ -1,7 +1,10 @@
 body{
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-#chart{
- height: 80vh !important;
+@media only screen and (min-width: 576px) {
+  #chart{
+    max-height: 80vh;
+  }
 }
+

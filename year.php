@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/chart.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <script src="assets/js/jquery.min.js" defer></script>
+    <script src="assets/js/bootstrap.min.js" defer></script>
     <script>
         const temps = <?= json_encode($temps) ?>;
         const humidity = <?= json_encode($humidity) ?>;

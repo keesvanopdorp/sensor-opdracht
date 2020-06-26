@@ -38,6 +38,8 @@ for($i=1; $i < 25; $i++){
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/chart.min.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <script src="assets/js/jquery.min.js" defer></script>
+    <script src="assets/js/bootstrap.min.js" defer></script>
     <title>Vnadaag</title>
     <script>
         const temps = <?= json_encode($temps) ?>;
