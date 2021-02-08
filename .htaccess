@@ -3,10 +3,15 @@ RewriteRule "assets/css/bootstrap.min.css" "vendor/twbs/bootstrap/dist/css/boots
 RewriteRule "assets/css/chart.min.css" "vendor/nnnick/chartjs/dist/Chart.min.css"
 RewriteRule "assets/js/chart.min.js" "vendor/nnnick/chartjs/dist/Chart.min.js"
 RewriteRule "assets/js/bootstrap.min.js" "vendor/twbs/bootstrap/dist/js/bootstrap.min.js"
+RewriteRule "week.php" "public/week.php"
+RewriteRule "month.php" "public/month.php"
+RewriteRule "year.php" "public/year.php"
+RewriteRule "index.php" "public/index.php"
 Options All -Indexes
 RedirectMatch 404 ^/vendor/$
 RedirectMatch 403 ^/php/$
 RedirectMatch 404 composer.json
 RedirectMatch 404 composer.lock
 RedirectMatch 403 ^/.htaccess$
+DirectoryIndex public/index.php
 

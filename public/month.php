@@ -1,5 +1,5 @@
 <?php
-require_once "php/classes/db.php";
+require_once "../php/classes/db.php";
 $db = new Db();
 $con = $db->getConnection();
 $temps = [];
@@ -15,7 +15,7 @@ for($i=1; $i < $daysInMonth + 2; $i += 1){
     $stmt->execute();
     $result = $stmt->get_result();
     $data = $result->fetch_assoc();
-    if(!$data['temperature']){
+    if(!isset($data['temperature'])){
         array_push($temps, "");
         array_push($humidity, "");
     } else {
@@ -49,11 +49,11 @@ for($i=1; $i < $daysInMonth + 2; $i += 1){
 </head>
 <body>
 <?php
-require_once "layout/partials/navbar.php";
+require_once "../layout/partials/navbar.php";
 ?>
 <h1 class="text-center">Temperatuur en luchtvochtigheid deze maand</h1>
 <?php
-require_once "layout/partials/chart.php"
+require_once "../layout/partials/chart.php"
 ?>
 </body>
 </html>
